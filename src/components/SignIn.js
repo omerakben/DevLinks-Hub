@@ -14,7 +14,7 @@ function Signin() {
         <h2 className="h3-bold text-dark100_light900 mb-2">Welcome!</h2>
         <p className="paragraph-regular text-dark300_light700 mb-8 text-center">Sign in to access your personalized developer resource hub</p>
 
-        <button type="button" className="flex items-center gap-2 bg-primary-500 hover:bg-primary-100 hover:text-primary-500 text-light-900 paragraph-medium px-6 py-3 rounded-lg transition-colors w-full justify-center" onClick={signIn}>
+        <button type="button" className="signin-button flex items-center gap-2 bg-primary-500 hover:bg-primary-100 hover:text-primary-500 text-light-900 paragraph-medium px-6 py-3 rounded-lg transition-colors w-full justify-center" onClick={signIn}>
           <Image src="/icons/google.svg" alt="Google icon" width={20} height={20} />
           Sign In with Google
         </button>

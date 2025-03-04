@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M3 3v18h18" />
+  <path d="M18.4 3H7.6C6.17 3 5.46 3 4.9 3.27C4.42 3.5 4.03 3.88 3.8 4.36C3.53 4.93 3.53 5.65 3.53 7.08V16" />
+  <path d="M3 9h18" />
+  <path d="M15 15h.01" />
+  <path d="M9 15h.01" />
+  <path d="M15 19h.01" />
+  <path d="M9 19h.01" />
+  <path d="M15 3v6" />
+  <path d="M9 3v6" />
+  <path d="M9 13.5V14" />
+  <path d="M15 13.5V14" />
+  <path d="M9 17.5V18" />
+  <path d="M15 17.5V18" />
+</svg>

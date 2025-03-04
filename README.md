@@ -1,61 +1,150 @@
-# NextJS with Firebase Auth App Router Template
+# DevLinks Hub
 
-[See Live Demo of this Template](https://drt-next-js-template-app-router.netlify.app/)
+A platform to share and discover developer resources. DevLinks Hub allows users to create and manage their own collection of developer resources, as well as discover resources shared by others.
 
-## Topics
-- [Get Started](#get-started)
-- [Starting the Project](#starting-the-project)
-- [Deploying on Netlify](#deploying-on-netlify)
-___
+## Features
+
+### User Features
+- **Authentication**: Sign in with Google
+- **User Dashboard**: Manage your personal collection of developer resources
+- **Link Management**: Add, edit, and delete links to developer resources
+- **Category Management**: Organize your links by categories
+- **Public Resources**: Discover resources shared by others
+
+### Admin Features
+- **Admin Dashboard**: Manage public resources for all users
+- **Public Link Management**: Add, edit, and delete public links
+- **Public Category Management**: Organize public links by categories
+
+### Technical Features
+- **Responsive Design**: Works on all devices
+- **Dark/Light Mode**: Choose your preferred theme
+- **Real-time Database**: Powered by Firebase Realtime Database
+- **Authentication**: Secure authentication with Firebase Auth
+- **Toast Notifications**: User-friendly notifications for actions
+- **Modal Dialogs**: Clean and intuitive UI for forms
+- **Confirmation Dialogs**: Prevent accidental deletions
+- **Search Functionality**: Find resources quickly
+
+## Technologies Used
+
+- **Next.js**: React framework for server-side rendering and static site generation
+- **Firebase**: Authentication and Realtime Database
+- **Tailwind CSS**: Utility-first CSS framework
+- **React**: JavaScript library for building user interfaces
+- **Context API**: State management
+
 ## Getting Started
-### Use Template
-#### 1. To get started, click the GREEN "Use this Template" button at the top of the repo
-<img width="915" alt="Screen Shot 2022-07-06 at 12 54 01 PM" src="https://user-images.githubusercontent.com/29741570/177612998-4aac9237-5a1e-4f13-8ae0-468587521564.png">
 
-#### 2. Make sure YOUR github account is selected in the dropdown and name your project
-<img width="763" alt="Screen Shot 2022-07-06 at 12 54 48 PM" src="https://user-images.githubusercontent.com/29741570/177613126-dd38f678-7553-4f27-8a4a-75680f14d71e.png">
+### Prerequisites
 
-#### 3. Clone your new repo to your local machine
-#### 4. Go to the **NEXT** section
+- Node.js (v14 or later)
+- npm or yarn
+- Firebase account
 
-## Starting the Project
-1. Create a Firebase project and set up authentication. Use [these videos](https://vimeo.com/showcase/codetracker-firebase) as a refresher if needed.
-1. Create a `.env` file at the root of the project
-1. Copy/Paste the contents of the `.env.sample` file to your newly created `.env` file.
-1. Copy over all of your Firebase values into the `.env` file.
-1. Open the `package.json` file and change the `name` property to the name of your application, and `author` to  your name.
-1. From your command line, be in the root directory and run `npm install` OR `npm i` for short.
-1. Next, run `npm run prepare`. This command sets up husky to track eslint errors on commit that will make your deploy fail on Netlify.
-1. Run `npx eslint . --ext .js,.jsx`
-1. To start your application, run `npm run dev`. THIS IS THE COMMAND YOU WILL USE TO RUN YOUR DEVELOPMENT SERVER FROM NOW ON.
-1. Open [http://localhost:3000](http://localhost:3000) with your browser.
+### Installation
 
-### If you see this, you are set to go!
-<img width="450" alt="Screen Shot 2022-07-06 at 1 07 27 PM" src="https://github.com/user-attachments/assets/deae25f0-01d5-44b4-be60-7297b0f6f0ef">
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/devlinks-hub.git
+cd devlinks-hub
+```
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+```
 
-**NOTES:** 
-- If you see the following error, you did not follow all the setup steps correctly and failed to add your Firebase creds. Go back and do that NOW.
+3. Create a `.env.local` file in the root directory with your Firebase configuration:
+```
+NEXT_PUBLIC_FIREBASE_API_KEY=your-api-key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your-auth-domain
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your-project-id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your-storage-bucket
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your-messaging-sender-id
+NEXT_PUBLIC_FIREBASE_APP_ID=your-app-id
+NEXT_PUBLIC_FIREBASE_DATABASE_URL=your-database-url
+```
 
-<img width="1043" alt="Screen Shot 2022-07-06 at 11 18 45 AM" src="https://user-images.githubusercontent.com/29741570/177612501-c2628f18-4bbd-4de9-aae6-27ffba1172d6.png">
+4. Start the development server:
+```bash
+npm run dev
+# or
+yarn dev
+```
 
-### Deploying on Netlify
-Netlify will automatically detect your project and prepopulate the settings, but should something go wrong and it does not, here are the commands:
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-- Build Command: `npm run build`
-- Publish directory: `.next`
+## Firebase Setup
 
-#### Additional Steps to Take on Netlify
-- Add Environmental Variables
-    - Any Enviromental variables you are using in your `.env` file should be added to Netlify. 
-        - Go to Site settings > Build & deploy > Environment > Environment variables and the keys and values there if you did not add them when you were deploying your site
+1. Create a new Firebase project at [https://console.firebase.google.com/](https://console.firebase.google.com/)
+2. Enable Authentication and select Google as a sign-in method
+3. Create a Realtime Database
+4. Set up security rules for your database:
 
-- Update Firebase URL Settings
-    - In Firebase under Authentication select sign in methods, scroll to Authorized domains. Add your Netlify URL.
-        
-## Learn More about Next.js
-To learn more about Next.js, take a look at the following resources:
+```json
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
+      }
+    },
+    "userLinks": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
+      }
+    },
+    "publicLinks": {
+      ".read": true,
+      ".write": "auth != null && root.child('users').child(auth.uid).child('isAdmin').val() === true"
+    },
+    "publicCategories": {
+      ".read": true,
+      ".write": "auth != null && root.child('users').child(auth.uid).child('isAdmin').val() === true"
+    }
+  }
+}
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
+
+```
+devlinks-hub/
+├── public/            # Static assets
+├── src/               # Source code
+│   ├── app/           # Next.js app directory
+│   │   ├── admin/     # Admin pages
+│   │   ├── user/      # User pages
+│   │   ├── layout.js  # Root layout
+│   │   └── page.js    # Home page
+│   ├── components/    # React components
+│   ├── styles/        # Global styles
+│   └── utils/         # Utility functions
+│       ├── auth.js    # Authentication utilities
+│       ├── client.js  # Firebase client
+│       ├── database.js # Database utilities
+│       └── context/   # React contexts
+├── .env.local         # Environment variables (not in repo)
+├── next.config.js     # Next.js configuration
+└── tailwind.config.js # Tailwind CSS configuration
+```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgements
+
+- [Next.js](https://nextjs.org/)
+- [Firebase](https://firebase.google.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [React](https://reactjs.org/)

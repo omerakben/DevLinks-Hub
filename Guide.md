@@ -1,6 +1,26 @@
 **Front End Capstone Requirements: DevLinks Hub**
 
 **Project:** DevLinks Hub
+DevLinks Hub
+DevLinks Hub is a centralized resource management platform designed to streamline access to development resources through a curated link management system. The platform offers two distinct experiences: a public-facing curated collection of essential developer resources managed by administrators and personalized link collections for authenticated users. Using Firebase for authentication and database management, the platform will provide a clean, organized interface for accessing frequently used development resources.
+The motivation behind this project stems from a common challenge in web development: the scattered nature of learning resources and documentation. As developers navigate between various frameworks, libraries, and tools, maintaining quick access to these resources becomes increasingly complex. While browser bookmarks exist, they lack organization, shareability, and accessibility across devices. By creating a centralized hub specifically designed for developers, this platform aims to reduce the friction in accessing essential resources and improve workflow efficiency.
+Core Features:
+- Public view displaying categorized default links (Frontend Developer, Backend Developer, Full Stack Developer etc.)
+- Administrator dashboard for managing public resource collections
+- Google Authentication integration for user accounts
+- Personal link collection management for authenticated users (CRUD operations)
+- Category-based organization system
+- Responsive design for mobile and desktop access
+- Search functionality within saved resources
+Stretch Features:
+- Link validation checking
+- Resource rating system
+- Community-suggested links queue for admin review
+- Link click analytics
+- Resource description and notes feature
+- Tag-based filtering system
+- Quick copy functionality for code snippets or URLs
+
 
 **I. General Requirements Checklist**
 
@@ -153,3 +173,73 @@ This section outlines the general requirements for the front-end capstone projec
     *   **DevLinks Hub Implementation:** Any images used (e.g., favicons) will be appropriately sized and optimized for web display.
 
 This document demonstrates that the DevLinks Hub project meets all the specified requirements for the front-end capstone. It also provides a clear roadmap for development and serves as a checklist to ensure all requirements are addressed.
+
+Phase 1: Project Setup and Authentication
+Set up Next.js project with Tailwind CSS
+Configure Firebase (Authentication and Realtime Database)
+Implement basic routing structure
+Create authentication flow (Google Authentication)
+Phase 2: Core Components and Public View
+Design and implement the Navbar component
+Create LinkCard component for displaying resources
+Implement CategoryList component
+Build the public homepage with default categorized links
+Phase 3: User Dashboard
+Create protected routes for authenticated users
+Implement AddLinkForm component for CRUD operations
+Build user dashboard for managing personal links
+Add category management for personal collections
+Phase 4: Admin Dashboard
+Create admin-only protected routes
+Build admin dashboard for managing public resources
+Implement admin-specific features (approving community suggestions, etc.)
+Phase 5: Advanced Features and Refinement
+Implement search functionality
+Add responsive design optimizations
+Implement any stretch features (link validation, rating system, etc.)
+Final testing and refinement
+Technical Considerations
+Proper form input types for different data fields
+Authentication checks to prevent unauthorized access/modifications
+Clean, professional UI with limited color palette
+Proper error handling and validation
+
+devlinks-hub/
+├── publicLinks/
+│   ├── [linkId]/
+│   │   ├── title: string
+│   │   ├── url: string
+│   │   ├── description: string
+│   │   ├── categoryId: string
+│   │   ├── createdAt: timestamp
+│   │   ├── updatedAt: timestamp
+│   │   └── createdBy: userId
+├── userLinks/
+│   ├── [userId]/
+│   │   ├── links/
+│   │   │   ├── [linkId]/
+│   │   │   │   ├── title: string
+│   │   │   │   ├── url: string
+│   │   │   │   ├── description: string
+│   │   │   │   ├── categoryId: string
+│   │   │   │   ├── createdAt: timestamp
+│   │   │   │   └── updatedAt: timestamp
+│   │   └── categories/
+│   │       ├── [categoryId]/
+│   │       │   ├── name: string
+│   │       │   ├── createdAt: timestamp
+│   │       │   └── updatedAt: timestamp
+├── publicCategories/
+│   ├── [categoryId]/
+│   │   ├── name: string
+│   │   ├── description: string
+│   │   ├── createdAt: timestamp
+│   │   └── updatedAt: timestamp
+└── users/
+    ├── [userId]/
+    │   ├── displayName: string
+    │   ├── email: string
+    │   ├── photoURL: string
+    │   ├── isAdmin: boolean
+    │   ├── createdAt: timestamp
+    │   └── lastLogin: timestamp

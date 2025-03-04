@@ -3,6 +3,7 @@
 'use client';
 
 import { auth } from '@/utils/client';
+import { checkIfAdmin, createUserProfile, getUserProfile, updateUserProfile } from '@/utils/database';
 import { onAuthStateChanged } from 'firebase/auth';
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
@@ -12,6 +13,8 @@ AuthContext.displayName = 'AuthContext'; // Context object accepts a displayName
 
 function AuthProvider(props) {
   const [user, setUser] = useState(null);
+  const [userProfile, setUserProfile] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   // there are 3 states for the user:
   // null = application initial state, not yet loaded
@@ -19,11 +22,42 @@ function AuthProvider(props) {
   // an object/value = user is logged in
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (fbUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (fbUser) => {
       if (fbUser) {
         setUser(fbUser);
+
+        // Get or create user profile
+        try {
+          let profile = await getUserProfile(fbUser.uid);
+
+          if (!profile) {
+            // Create new user profile if it doesn't exist
+            profile = await createUserProfile(fbUser.uid, {
+              displayName: fbUser.displayName,
+              email: fbUser.email,
+              photoURL: fbUser.photoURL,
+            });
+          } else {
+            // Update last login time
+            await updateUserProfile(fbUser.uid, {
+              displayName: fbUser.displayName,
+              email: fbUser.email,
+              photoURL: fbUser.photoURL,
+            });
+          }
+
+          setUserProfile(profile);
+
+          // Check if user is admin
+          const adminStatus = await checkIfAdmin(fbUser.uid);
+          setIsAdmin(adminStatus);
+        } catch (error) {
+          console.error('Error managing user profile:', error);
+        }
       } else {
         setUser(false);
+        setUserProfile(null);
+        setIsAdmin(false);
       }
     }); // creates a single global listener for auth state changed
 
@@ -35,11 +69,13 @@ function AuthProvider(props) {
     // https://reactjs.org/docs/hooks-reference.html#usememo
     () => ({
       user,
+      userProfile,
+      isAdmin,
       userLoading: user === null,
       // as long as user === null, will be true
       // As soon as the user value !== null, value will be false
     }),
-    [user],
+    [user, userProfile, isAdmin],
   );
 
   return <AuthContext.Provider value={value} {...props} />;
