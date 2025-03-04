@@ -2,8 +2,9 @@
 
 'use client';
 
-import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
-import { firebase } from '@/utils/client';
+import { auth } from '@/utils/client';
+import { onAuthStateChanged } from 'firebase/auth';
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
 const AuthContext = createContext();
 
@@ -18,13 +19,16 @@ function AuthProvider(props) {
   // an object/value = user is logged in
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged((fbUser) => {
+    const unsubscribe = onAuthStateChanged(auth, (fbUser) => {
       if (fbUser) {
         setUser(fbUser);
       } else {
         setUser(false);
       }
     }); // creates a single global listener for auth state changed
+
+    // Clean up subscription on unmount
+    return () => unsubscribe();
   }, []);
 
   const value = useMemo(
@@ -51,4 +55,4 @@ const useAuth = () => {
   return context;
 };
 
-export { AuthProvider, useAuth, AuthConsumer };
+export { AuthConsumer, AuthProvider, useAuth };
