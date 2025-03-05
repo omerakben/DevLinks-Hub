@@ -4,16 +4,14 @@
 DevLinks Hub is a centralized platform for developers to discover, share, and organize valuable programming resources. The application allows users to create personal collections of developer resources and explore content shared by the community, making it easier to find helpful tools, tutorials, and documentation.
 
 ## Quick Links
-- [Loom Demo](https://devlinks-hub.vercel.app) <!-- Replace with your actual deployed URL -->
-- [Wireframes/Prototype](https://www.figma.com/file/xxxxx/DevLinks-Hub) <!-- Replace with your actual wireframe link -->
-- [Project Board](https://github.com/users/omerakben/projects/x) <!-- Replace with your actual project board link -->
+- [Live Demo](https://dev-links-hub.vercel.app/)
+- [Wireframes/Prototype](https://www.figma.com/design/1Hho9zZfAQgsqhB7kAAa1x/DevLinks-Capstone?node-id=0-1&t=kTE0wsSQUuruCZiP-1)
+- [Project Board](https://github.com/users/omerakben/projects/12)
+- [Loom Video](https://www.loom.com/share/b0dc10a0586b47c0b88055a9b37e999d?sid=7abe874e-3ff6-4418-955a-3e681d2111ca)
 
-## Target Users
-DevLinks Hub is designed for:
-- **Junior Developers** seeking curated learning resources
-- **Senior Developers** looking to organize and share their go-to tools
-- **Technical Teams** who want to maintain shared resource libraries
-- **Coding Instructors** who need to share resources with students
+
+## DevLinks Hub is inspired from StackOverflow:
+- **Junior Developers** Omer (Ozzy) Akben
 
 ## Features
 
@@ -47,19 +45,16 @@ DevLinks Hub is designed for:
 
 ### Home Page
 ![Home Page](public/images/screenshots/home-page.png)
-<!-- Add actual screenshot here -->
+
 
 ### User Dashboard
 ![User Dashboard](public/images/screenshots/dashboard.png)
-<!-- Add actual screenshot here -->
+
 
 ### Resource Management
 ![Resource Management](public/images/screenshots/resource-management.png)
-<!-- Add actual screenshot here -->
 
-### Dark Mode
-![Dark Mode](public/images/screenshots/dark-mode.png)
-<!-- Add actual screenshot here -->
+
 
 ## Technologies Used
 
@@ -143,11 +138,3 @@ yarn dev
   }
 }
 ```
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
