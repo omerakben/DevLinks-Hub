@@ -5,7 +5,13 @@ const nextConfig = {
     dirs: ['pages', 'components', 'lib'], // Run ESLint on specified directories during development
   },
   images: {
-    domains: ['lh3.googleusercontent.com'], // Allow images from Google authentication
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+        pathname: '**',
+      },
+    ],
   },
 };
 

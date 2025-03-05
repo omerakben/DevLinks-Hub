@@ -52,8 +52,10 @@ export default function NavBar() {
       <div className="flex-between max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex-start">
           <Link href="/" className="flex-center gap-2">
-            <div className="relative h-10 w-40">
-              <Image src={isDarkMode ? '/images/logo-dark.svg' : '/images/logo-light.svg'} alt="DevLinks Hub Logo" fill className="object-contain" priority />
+            <div className="flex items-center gap-1 mb-8">
+              <Image src="/icons/link.svg" alt="Link icon" width={32} height={32} className="text-primary-500" />
+              <h1 className={`h2-bold ${isDarkMode ? 'text-light900' : 'text-dark100'} primary-text-gradient`}>DevLinks</h1>
+              <p className={`h2-bold ${isDarkMode ? 'text-light900' : 'text-dark100'}`}>Hub</p>
             </div>
           </Link>
         </div>

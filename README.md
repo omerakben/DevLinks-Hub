@@ -1,6 +1,19 @@
 # DevLinks Hub
 
-A platform to share and discover developer resources. DevLinks Hub allows users to create and manage their own collection of developer resources, as well as discover resources shared by others.
+## Overview
+DevLinks Hub is a centralized platform for developers to discover, share, and organize valuable programming resources. The application allows users to create personal collections of developer resources and explore content shared by the community, making it easier to find helpful tools, tutorials, and documentation.
+
+## Quick Links
+- [Loom Demo](https://devlinks-hub.vercel.app) <!-- Replace with your actual deployed URL -->
+- [Wireframes/Prototype](https://www.figma.com/file/xxxxx/DevLinks-Hub) <!-- Replace with your actual wireframe link -->
+- [Project Board](https://github.com/users/omerakben/projects/x) <!-- Replace with your actual project board link -->
+
+## Target Users
+DevLinks Hub is designed for:
+- **Junior Developers** seeking curated learning resources
+- **Senior Developers** looking to organize and share their go-to tools
+- **Technical Teams** who want to maintain shared resource libraries
+- **Coding Instructors** who need to share resources with students
 
 ## Features
 
@@ -10,11 +23,15 @@ A platform to share and discover developer resources. DevLinks Hub allows users 
 - **Link Management**: Add, edit, and delete links to developer resources
 - **Category Management**: Organize your links by categories
 - **Public Resources**: Discover resources shared by others
+- **Search Functionality**: Find resources quickly by title, description, or tags
+- **Responsive Design**: Access from any device with a consistent experience
+- **Theme Toggle**: Switch between light and dark mode based on preference
 
 ### Admin Features
 - **Admin Dashboard**: Manage public resources for all users
 - **Public Link Management**: Add, edit, and delete public links
 - **Public Category Management**: Organize public links by categories
+- **User Management**: View and manage user accounts
 
 ### Technical Features
 - **Responsive Design**: Works on all devices
@@ -26,13 +43,30 @@ A platform to share and discover developer resources. DevLinks Hub allows users 
 - **Confirmation Dialogs**: Prevent accidental deletions
 - **Search Functionality**: Find resources quickly
 
+## Screenshots
+
+### Home Page
+![Home Page](public/images/screenshots/home-page.png)
+<!-- Add actual screenshot here -->
+
+### User Dashboard
+![User Dashboard](public/images/screenshots/dashboard.png)
+<!-- Add actual screenshot here -->
+
+### Resource Management
+![Resource Management](public/images/screenshots/resource-management.png)
+<!-- Add actual screenshot here -->
+
+### Dark Mode
+![Dark Mode](public/images/screenshots/dark-mode.png)
+<!-- Add actual screenshot here -->
+
 ## Technologies Used
 
 - **Next.js**: React framework for server-side rendering and static site generation
 - **Firebase**: Authentication and Realtime Database
 - **Tailwind CSS**: Utility-first CSS framework
 - **React**: JavaScript library for building user interfaces
-- **Context API**: State management
 
 ## Getting Started
 
@@ -46,8 +80,7 @@ A platform to share and discover developer resources. DevLinks Hub allows users 
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/devlinks-hub.git
-cd devlinks-hub
+git clone https://github.com/omerakben/DevLinks-Hub
 ```
 
 2. Install dependencies:
@@ -111,29 +144,6 @@ yarn dev
 }
 ```
 
-## Project Structure
-
-```
-devlinks-hub/
-├── public/            # Static assets
-├── src/               # Source code
-│   ├── app/           # Next.js app directory
-│   │   ├── admin/     # Admin pages
-│   │   ├── user/      # User pages
-│   │   ├── layout.js  # Root layout
-│   │   └── page.js    # Home page
-│   ├── components/    # React components
-│   ├── styles/        # Global styles
-│   └── utils/         # Utility functions
-│       ├── auth.js    # Authentication utilities
-│       ├── client.js  # Firebase client
-│       ├── database.js # Database utilities
-│       └── context/   # React contexts
-├── .env.local         # Environment variables (not in repo)
-├── next.config.js     # Next.js configuration
-└── tailwind.config.js # Tailwind CSS configuration
-```
-
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
@@ -141,10 +151,3 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgements
-
-- [Next.js](https://nextjs.org/)
-- [Firebase](https://firebase.google.com/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [React](https://reactjs.org/)
