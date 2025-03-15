@@ -1,7 +1,5 @@
 'use client';
 
-// any component that uses useAuth needs this because if a component directly imports useAuth, it needs to be a client component since useAuth uses React hooks.
-
 import Loading from '@/components/Loading';
 import { signOut } from '@/utils/auth';
 import { useAuth } from '@/utils/context/authContext';
